@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from agent_service import agent
+from todo_service import get_tasks
+
 
 app = FastAPI()
 
@@ -14,6 +16,10 @@ class MessageRequest(BaseModel):
     message: str
 
 
-@app.post("/completion")
+@app.post("/chat")
 async def message(request: MessageRequest):
     return await agent(request.message)
+
+@app.get("/tasks")
+    async def tasks()
+        return todo_service.get_tasks()
